@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<title>Cart - JP Coffee Shop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<img src="logo.png">
+<h3>🛒 உங்கள் Cart</h3>
+</header>
+
+<div class="cart" id="cart"></div>
+<div class="cart total" id="total"></div>
+
+<div style="text-align:center;margin-top:15px">
+<h4>Payment & Options</h4>
+<img src="upi-qr.png" width="180"><br><br>
+<button onclick="payRazor()">Payment Completed</button>
+<button onclick="whatsappOrder()">WhatsApp Order</button>
+<button onclick="printBill()">Print Bill / Token</button>
+</div>
+
+<script src="scripts.js"></script>
+<script> updateCart(); </script>
+</body>
+</html>

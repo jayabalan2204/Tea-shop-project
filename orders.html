@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<title>Orders History - JP Cafe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<img src="logo.png">
+<h3>Orders History</h3>
+</header>
+
+<div id="orders"></div>
+
+<script src="scripts.js"></script>
+<script>
+if(!checkAdmin()){ alert("Admin only"); location.href="admin.html"; }
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+let div=document.getElementById("orders");
+if(orders.length===0){ div.innerHTML="<p style='padding:15px'>No orders yet</p>"; }
+orders.reverse().forEach((o,idx)=>{
+let items=o.items.map(i=>`${i.name} x ${i.qty}`).join(", ");
+div.innerHTML+=`
+<div class="order">
+<h3>🗓 ${o.date}</h3>
+<p>${items}</p>
+<strong>Total: ₹${o.total}</strong>
+<button onclick="orders.splice(${orders.length-1-idx},1); localStorage.setItem('orders',JSON.stringify(orders)); location.reload()">❌ Delete</button>
+<button onclick="cart=o.items; printBill();">🖨️ Print</button>
+</div>`;
+});
+</script>
+</body>
+</html>

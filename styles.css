@@ -1,0 +1,20 @@
+/* Professional layout & responsive */
+body { font-family: Arial, sans-serif; background:#fff8f0; margin:0; }
+header { display:flex; align-items:center; gap:10px; padding:15px; img src="logo.png" color:#fff; }
+header img { height:50px; }
+.menu { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; padding:20px; }
+.item { background:#fff; padding:15px; border-radius:8px; text-align:center; box-shadow:0 0 5px #ccc; position:relative; }
+.qty { display:flex; justify-content:center; gap:10px; margin:10px 0; }
+.qty button { width:30px; cursor:pointer; }
+button { background:#6f4e37; color:#fff; border:none; border-radius:5px; padding:6px 12px; cursor:pointer; }
+.cart-icon { position:fixed; top:15px; right:15px; font-size:24px; cursor:pointer; }
+.fly { position:absolute; animation:fly 3.7s forwards; }
+@keyframes fly { 100% { transform:translate(250px,-200px); opacity:0; } }
+
+.cart, .order { padding:20px; background:#fff; margin:15px; border-radius:8px; box-shadow:0 0 5px #ccc; }
+.row { display:flex; justify-content:space-between; align-items:center; margin:8px 0; }
+.total { font-size:18px; font-weight:bold; margin-top:15px; }
+@media (max-width:600px){
+.menu { grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); }
+header h2, header h3 { font-size:1.1em; }
+}
