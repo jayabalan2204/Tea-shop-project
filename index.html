@@ -13,13 +13,21 @@
 <h2>JP Cafe</h2>
 </header>
 
-<div class="cart-icon">🛒</a></div>
+<div class="cart-icon" onclick="location.href='cart.html'">
+  🛒
+  <span id="cartCount">0</span>
+</div>
+
 <div class="menu" id="menu"></div>
 <div style="text-align:center;margin-bottom:20px">
 <a href="cart.html"><button>Cart பார்க்க</button></a>
 </div>
+<script>
+  updateCartCount();
+</script>
 
 <script src="scripts.js"></script>
 <script> renderMenu(document.getElementById("menu")); </script>
 </body>
 </html>
+
