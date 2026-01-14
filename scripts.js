@@ -20,15 +20,36 @@ menuDiv.innerHTML+=`
 <span id="q${i}">0</span>
 <button onclick="changeQty(${i},1)">+</button>
 </div>
-<button onclick="addToCart(${i},this)">Add</button>
+
 </div>`;
 });
 }
 
 function changeQty(i,v){
-qty[i]=Math.min(999,Math.max(0,qty[i]+v));
-document.getElementById("q"+i).innerText=qty[i];
+  qty[i] = Math.min(999, Math.max(0, qty[i] + v));
+  document.getElementById("q"+i).innerText = qty[i];
+
+  let found = cart.find(c => c.name === products[i].name);
+
+  if (qty[i] === 0) {
+    if (found) {
+      cart = cart.filter(c => c.name !== products[i].name);
+    }
+  } else {
+    if (found) {
+      found.qty = qty[i];
+    } else {
+      cart.push({
+        name: products[i].name,
+        price: products[i].price,
+        qty: qty[i]
+      });
+    }
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
+
 
 function addToCart(i,btn){
 if(qty[i]==0){ alert("Quantity 0"); return; }
@@ -113,3 +134,17 @@ location.href="orders.html";
 }else{ alert("Incorrect PIN"); }
 }
 function checkAdmin(){ return localStorage.getItem("admin")==="true"; }
+
+function updateCartCount(){
+  let count = cart.reduce((s,i)=>s + i.qty, 0);
+  let el = document.getElementById("cartCount");
+  if(!el) return;
+
+  el.innerText = count;
+
+  let icon = document.querySelector(".cart-icon");
+  icon.classList.remove("cart-bounce");
+  void icon.offsetWidth; // restart animation
+  icon.classList.add("cart-bounce");
+}
+
